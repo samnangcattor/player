@@ -1,0 +1,28 @@
+<div id="player"></div>
+<script type="text/javascript">
+
+var player = jwplayer('player');
+var countError = 0;
+var sources = [
+  {"label":"360p", "type":"video/mp4", "file":"https://lh3.googleusercontent.com/xIbZCuKBoAmpu5f9zG8MfUUNAu_vjkFIDsZtAwyRcQ7RF0FfjNd6Ea408BT0ZUh1JOmuJK-7iQs=m18"},
+  {"label":"480p", "type":"video/mp4", "file":"https://lh3.googleusercontent.com/xIbZCuKBoAmpu5f9zG8MfUUNAu_vjkFIDsZtAwyRcQ7RF0FfjNd6Ea408BT0ZUh1JOmuJK-7iQs=m59"},
+  {"label":"720p", "type":"video/mp4", "file":"https://lh3.googleusercontent.com/xIbZCuKBoAmpu5f9zG8MfUUNAu_vjkFIDsZtAwyRcQ7RF0FfjNd6Ea408BT0ZUh1JOmuJK-7iQs=m22"}
+];
+player.setup({
+  width: "100%",
+  aspectratio: "16:9",
+  sources: sources
+});
+
+player.on('error', function() {
+  if (countError < 100) {
+    player.load({
+      width: "100%",
+      aspectratio: "16:9",
+      sources: sources
+    });
+    player.play();
+  }
+  countError ++;
+});
+</script>
